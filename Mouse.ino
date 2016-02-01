@@ -1,12 +1,12 @@
 #include <Mouse.h>
 
-//Serial  = TX 0 | RX 1
-//Serial1 = USB Native | Mouse out
+//Serial1  = TX 0 | RX 1
+//Serial = USB Native | Mouse out
 
 void setup() {
   // put your setup code here, to run once:
   pinMode(2, INPUT);
-  Serial.begin(9600);
+  Serial1.begin(9600);
 }
 
 void loop() {
@@ -18,10 +18,10 @@ void loop() {
 
   int p1 = 0;
   int p2 = 0;
-  if(Serial.available() > 0){
+  if(Serial1.available() > 0){
     p1 = Serial.read();
   }
-  if(Serial.available() > 0){
+  if(Serial1.available() > 0){
     p2 = Serial.read();
   }
 
