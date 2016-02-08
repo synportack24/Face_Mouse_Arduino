@@ -3,6 +3,8 @@
 //Serial1  = TX 0 | RX 1
 //Serial = USB Native | Mouse out
 
+bool mouseInit = false;
+
 void setup() {
   // put your setup code here, to run once:
   pinMode(2, INPUT);
@@ -12,8 +14,9 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
 
-  if(digitalRead(2) == HIGH){
+  if(digitalRead(2) == HIGH && !mouseInit){
     Mouse.begin();
+    mouseInit = true;
   }
 
   int p1 = 0;
