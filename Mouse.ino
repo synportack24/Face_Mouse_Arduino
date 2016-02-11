@@ -4,23 +4,41 @@
 //Serial = USB Native | Mouse out
 
 bool mouseInit = false;
+int commands[3];
 
 void setup() {
   // put your setup code here, to run once:
   pinMode(2, INPUT);
   Serial1.begin(9600);
-}
-
-void loop() {
-  // put your main code here, to run repeatedly:
 
   if(digitalRead(2) == HIGH && !mouseInit){
     Mouse.begin();
     mouseInit = true;
   }
+  
+}
 
-  int p1 = 0;
-  int p2 = 0;
+int counter = 0;
+void loop() {
+    if(Serial.available() > 0) {
+    counter++;
+    int commandIndex = 0x01 & counter;
+
+    int value = Serial.read();
+
+    if(value == '-'){
+      action();
+    } else 
+      commands[commandIndex] = value;
+  }
+}
+
+void action() {
+  // put your main code here, to run repeatedly:
+
+
+  int p1 = commands[0];
+  int p2 = commands[1];
   if(Serial1.available() > 0){
     p1 = Serial.read();
   }
