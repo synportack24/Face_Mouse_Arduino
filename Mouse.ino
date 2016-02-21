@@ -36,9 +36,9 @@ void loop() {
 void action() {
     // Get values from buffer
     int p1 = commands[0];
-    int p2 = commands[1];
+    int p2 = (int8_t)commands[1];
 
-    
+
     if(p1 != 0 && p2 != 0){
         
         // X or Y movement
